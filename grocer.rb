@@ -19,18 +19,18 @@ end
 def apply_coupons(cart, coupons)
   # code here
   hash_food = {}
-  cart.each do |food, info|
+  cart.each do |key, info|
     coupons.each do |coupon|
-      if food == coupon[:item] && info[:count] >= coupon[:num]
+      if key == coupon[:item] && info[:count] >= coupon[:num]
         info[:count] =  info[:count] - coupon[:num]
-        if hash_food["#{food} W/COUPON"]
-          hash_food["#{food} W/COUPON"][:count] += 1
+        if hash_food["#{key} W/COUPON"]
+          hash_food["#{key} W/COUPON"][:count] += 1
         else
-          hash_food["#{food} W/COUPON"] = {:price => coupon[:cost], :clearance => info[:clearance], :count => 1}
+          hash_food["#{key} W/COUPON"] = {:price => coupon[:cost], :clearance => info[:clearance], :count => 1}
         end
       end
     end
-    hash_food[food] = info
+    hash_food[key] = info
   end
   return hash_food
 end
