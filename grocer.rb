@@ -46,10 +46,10 @@ end
 
 def checkout(cart, coupons)
   # code here
-  appliedClearance=[]
-  appliedClearance << consolidate_cart(cart: cart)
-  appliedClearance << apply_coupons(cart: consolCart, coupons: coupons)
-  appliedClearance << apply_clearance(cart: appliedCoupons)
+
+  cart << consolidate_cart(cart: cart)
+  cart << apply_coupons(cart: consolCart, coupons: coupons)
+  cart << apply_clearance(cart: appliedCoupons)
 
    total = 0
   appliedClearance.each do |item, itemHash|
