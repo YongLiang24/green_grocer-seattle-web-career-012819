@@ -1,20 +1,20 @@
 def consolidate_cart(cart)
   # adds a count of one to each item when there are no duplicates
-  consolCart = {}
+  hash_cart = {}
 
    cart.each do |foodHash|
     foodHash.each do |food, foodData|
-      consolCartData = consolCart[food]
-      if consolCartData == nil
-        consolCartData = {}
-        consolCart[food] = foodData
-        consolCart[food][:count] = 1
+      data_cart = hash_cart[food]
+      if data_cart == nil
+        data_cart = {}
+        hash_cart[food] = foodData
+        hash_cart[food][:count] = 1
       else
-        consolCart[food][:count] += 1
+        hash_cart[food][:count] += 1
       end
     end
   end
-  consolCart
+  hash_cart
 end
 
 def apply_coupons(cart, coupons)
