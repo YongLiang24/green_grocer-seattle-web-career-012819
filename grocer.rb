@@ -18,19 +18,21 @@ end
 
 def apply_coupons(cart, coupons)
   # code here
-  coupItem = coupon[:item]
-  coupons.each do |i|
-    if cart.keys.include?(coupItem) && cart[coupItem][:count] >= i[:num]
-        cart[coupItem][:count] = cart[coupItem][:count] - i[:num]
-        cart["#{coupItem} W/COUPON"] ||= {}
-        cart["#{coupItem} W/COUPON"][:price] = i[:cost]
-        cart["#{coupItem} W/COUPON"][:clearance] = cart[coupItem][:clearance]
-        cart["#{coupItem} W/COUPON"][:count] ||= 0
-        cart["#{coupItem} W/COUPON"][:count] += 1
+  result = {}
+  cart.each do |food, info|
+    coupons.each do |coupon|
+      if food == coupon[:item] && info[:count] >= coupon[:num]
+        info[:count] =  info[:count] - coupon[:num]
+        if result["#{food} W/COUPON"]
+          result["#{food} W/COUPON"][:count] += 1
+        else
+          result["#{food} W/COUPON"] = {:price => coupon[:cost], :clearance => info[:clearance], :count => 1}
+        end
       end
-
+    end
+    result[food] = info
   end
-    return cart
+  result
 end
 
 def apply_clearance(cart)
