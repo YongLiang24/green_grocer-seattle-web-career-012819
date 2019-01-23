@@ -18,6 +18,7 @@ end
 
 def apply_coupons(cart, coupons)
   # code here
+  =begin
   item = coupon[:item]
   coupons.each do |i|
     if cart.keys.include?(item) && cart[item][:count] >= i[:num]
@@ -31,6 +32,7 @@ def apply_coupons(cart, coupons)
 
   end
     return cart
+    =end
 end
 
 def apply_clearance(cart)
