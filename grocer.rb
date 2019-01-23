@@ -44,9 +44,10 @@ def apply_clearance(cart)
   end
 end
 
-def checkout(cart: [], coupons: [])
-  # code here	  consolCart = consolidate_cart(cart: cart)
-  appliedCoupons = apply_coupons(cart: consolCart, coupons: coupons)
+def checkout(cart, coupons)
+  # code here
+  appliedClearance = consolidate_cart(cart: cart)
+  appliedClearance = apply_coupons(cart: consolCart, coupons: coupons)
   appliedClearance = apply_clearance(cart: appliedCoupons)
 
    total = 0
@@ -58,5 +59,4 @@ def checkout(cart: [], coupons: [])
     total = total * 0.90
   end
 
-   total.round(2)
-end 	
+end
