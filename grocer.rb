@@ -30,7 +30,7 @@ def apply_coupons(cart, coupons)
         end
       end
     end
-    result[food] = info
+    hash_food[food] = info
   end
   return hash_food
 end
